@@ -1,0 +1,5 @@
+include COPYING
+include LICENSE
+include README.rst
+include setup.py
+include livinglots_mailreader/*.py
