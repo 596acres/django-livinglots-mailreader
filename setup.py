@@ -22,7 +22,7 @@ setup(
     name='django-livinglots-mailreader',
     version=livinglots_mailreader.__version__,
     description=("Reads mail in conjunction with Living Lots"),
-    long_description=open(os.path.join(os.path.dirname(__file__), 'README.rst')).read(),
+    long_description=open(os.path.join(os.path.dirname(__file__), 'README.md')).read(),
     url='https://github.com/596acres/django-livinglots-mailreader/',
     license='GNU Affero General Public License v3 or later (AGPLv3+)',
     platforms=['OS Independent'],
