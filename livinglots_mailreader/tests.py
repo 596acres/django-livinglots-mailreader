@@ -13,6 +13,12 @@ class MailReaderTest(TestCase):
         stripped = self.reader.strip_reply('test@gmail.com', text)
         self.assertEqual('Hi this is my text', stripped)
 
+    def test_strip_reply_gmail_multiline(self):
+        text = """Test via email.\r\n\r\nOn Tue, Mar 3, 2015 at 12:48 AM, Living Lots NYC Lot 56073 <\r\nlot+56073@livinglotsnyc.org> wrote:\r\n\r\n> Greetings. There has been a change to something you are organizing.\r\n>\r\n> Eric wrote "Hi again" on Staten Island block 7494, lot 8. View it at\r\n> http://livinglotsnyc.org/lot/5074940008/\r\n>\r\n> --\r\n>\r\n> You're receiving this because you are listed as an organizer on Staten\r\n> Island block 7494, lot 8: http://livinglotsnyc.org/lot/5074940008/.\r\n>\r\n>"""
+
+        stripped = self.reader.strip_reply('test@gmail.com', text)
+        self.assertEqual('Test via email.', stripped)
+
     def test_should_read(self):
         self.assertTrue(self.reader.should_read('test@gmail.com'))
 

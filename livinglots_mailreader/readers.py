@@ -82,6 +82,9 @@ class MailReader(object):
         for i, line in enumerate(lines):
             if re.match(pattern, line):
                 return lines[:i]
+            elif re.match(pattern, ''.join(lines[i:i + 2])):
+                # Gmail prefix, in particular, might span multiple lines
+                return lines[:i]
         return lines
 
     def strip_reply(self, from_address, payload_text):
