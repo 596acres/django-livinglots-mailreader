@@ -7,12 +7,12 @@ from livinglots_usercontent.notes.models import Note
 
 
 class MailReader(object):
-    from_name_regex = '(.+?)\s.+'
+    from_name_regex = r'(.+?)\s.+'
     from_name_pattern = re.compile(from_name_regex)
 
-    cutoff_line_pattern = '.*%s.*' % settings.MAILREADER_REPLY_PREFIX
+    cutoff_line_pattern = r'.*%s.*' % settings.MAILREADER_REPLY_PREFIX
 
-    gmail_prefix = re.compile('.*On .+ wrote:.*')
+    gmail_prefix = re.compile(r'.*On .+ wrote:.*')
 
     # These line patterns gathered using emails received and some tips as
     # suggested here:
@@ -23,16 +23,16 @@ class MailReader(object):
         gmail_prefix, 
 
         # Hotmail
-        re.compile('^Date:.*'),
+        re.compile(r'^Date:.*'),
 
         # Outlook Express
-        re.compile('^.*---+.*'),
+        re.compile(r'^.*---+.*'),
 
         # Outlook
-        re.compile('^.*___+.*'),
+        re.compile(r'^.*___+.*'),
 
         # common mobile signature
-        re.compile('^Sent from my .+'),
+        re.compile(r'^Sent from my .+'),
     )
 
     def get_name(self, address):
@@ -124,7 +124,7 @@ class NotesMailReader(MailReader):
     A MailReader that looks for emails that should be turned into notes on a 
     Living Lots site for a particular lot.
     """
-    lot_id_regex = '(?:.*\s+)?<?lot\+(\d+)@.+>?'
+    lot_id_regex = r'(?:.*\s+)?<?lot\+(\d+)@.+>?'
     lot_id_pattern = re.compile(lot_id_regex)
 
     def should_read(self, to_address=None, **kwargs):
